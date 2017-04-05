@@ -10,7 +10,10 @@
    <children>
       <Pane layoutX="-8.0" layoutY="-10.0" prefHeight="472.0" prefWidth="519.0">
          <children>
-            <Button layoutX="71.0" layoutY="392.0" mnemonicParsing="false" text="Baton" />
+            <Label fx:id="lab1" layoutX="94.0" layoutY="140.0" text="Label" />
+            <Label fx:id="lab2" layoutX="94.0" layoutY="195.0" text="Label" />
+            <Label fx:id="lab3" layoutX="94.0" layoutY="250.0" text="Label" />
+            <Label fx:id="lab4" layoutX="94.0" layoutY="307.0" text="Label" />
             <TextField layoutX="57.0" layoutY="93.0" />
             <ChoiceBox layoutX="260.0" layoutY="160.0" prefWidth="150.0" />
             <ChoiceBox layoutX="260.0" layoutY="224.0" prefWidth="150.0" />
