@@ -31,5 +31,5 @@ public class ApplicationController {
 	@FXML
 	ChoiceBox<String> box3;
 	
-
+	
 }
