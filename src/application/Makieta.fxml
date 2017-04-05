@@ -12,6 +12,10 @@
          <children>
             <Button layoutX="71.0" layoutY="392.0" mnemonicParsing="false" text="Baton" />
             <TextField layoutX="92.0" layoutY="89.0" />
+            <Label fx:id="lab1" layoutX="94.0" layoutY="140.0" text="Label" />
+            <Label fx:id="lab2" layoutX="94.0" layoutY="195.0" text="Label" />
+            <Label fx:id="lab3" layoutX="94.0" layoutY="250.0" text="Label" />
+            <Label fx:id="lab4" layoutX="94.0" layoutY="307.0" text="Label" />
          </children></Pane>
    </children>
 </AnchorPane>
