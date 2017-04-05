@@ -10,6 +10,7 @@
    <children>
       <Pane layoutX="-8.0" layoutY="-10.0" prefHeight="472.0" prefWidth="519.0">
          <children>
+            <Button layoutX="71.0" layoutY="392.0" mnemonicParsing="false" text="Baton" />
             <TextField layoutX="92.0" layoutY="89.0" />
          </children></Pane>
    </children>
