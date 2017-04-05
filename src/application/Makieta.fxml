@@ -18,6 +18,7 @@
             <ChoiceBox layoutX="260.0" layoutY="160.0" prefWidth="150.0" />
             <ChoiceBox layoutX="260.0" layoutY="224.0" prefWidth="150.0" />
             <ChoiceBox layoutX="260.0" layoutY="294.0" prefWidth="150.0" />
+            <Button layoutX="82.0" layoutY="362.0" mnemonicParsing="false" text="Button" />
          </children></Pane>
    </children>
 </AnchorPane>
