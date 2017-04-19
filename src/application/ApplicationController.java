@@ -37,7 +37,7 @@ public class ApplicationController {
 		stateList.add(new ModelStanu("Alabama",4.0,13.5,0,0,0,0,0));
 		stateList.add(new ModelStanu("Alaska",0.0,7.0,0,0,0,0,0));
 		stateList.add(new ModelStanu("Arizona",5.6,10.725,0,0,0,0,0));
-		stateList.add(new ModelStanu("Arkansas",6.5,11.625,1.5,0,0,0));
+		stateList.add(new ModelStanu("Arkansas",6.5,11.625,1.5,0,0,0,0));
 		stateList.add(new ModelStanu("California",7.25,9.75,0,0,0,0,0));
 		stateList.add(new ModelStanu("Colorado",2.9,10.0,0,0,0,0,0));
 		stateList.add(new ModelStanu("Connecticut",6.35,6.35,0,0,0,0,0));
@@ -74,7 +74,7 @@ public class ApplicationController {
 		stateList.add(new ModelStanu("Oklahoma",4.5,11.0,0,0,0,0,0));
 		stateList.add(new ModelStanu("Oregon",0.0,0.0,0,0,0,0,0));
 		stateList.add(new ModelStanu("Pennsylvania",6.0,8.0,0,0,0,0,0));
-		stateList.add(new ModelStanu("Puerto Rico",10.5,11.5,1.0,0,0,0,0,0));
+		stateList.add(new ModelStanu("Puerto Rico",10.5,11.5,1.0,0,0,0,0));
 		stateList.add(new ModelStanu("Rhode Island",7.0,7.0,0,8.0,0,0,0));
 		stateList.add(new ModelStanu("South Carolina",6.0,9.0,0,10.5,0,0,0));
 		stateList.add(new ModelStanu("South Dakota",4.0,6.0,0,0,0,0,0));
