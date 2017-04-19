@@ -3,8 +3,7 @@ package application;
 public class Product {
 	private String name;
 	private float price;
-	
-	
+	private int type;
 	public Product(){
 		this("",0.0f);
 	}
@@ -23,5 +22,11 @@ public class Product {
 	}
 	public void setPrice(float price) {
 		this.price = price;
+	}
+	public int getType() {
+		return type;
+	}
+	public void setType(int type) {
+		this.type = type;
 	}
 }

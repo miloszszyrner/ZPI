@@ -22,6 +22,10 @@ public class Main extends Application {
 		}
 	}
 	
+	public double CalculateAfterTax(double amount, Product p, ModelStanu s) {
+		return amount *(1 + s.calculateTax(p.getType()));
+	}
+	
 	public static void main(String[] args) {
 		launch(args);
 	}
