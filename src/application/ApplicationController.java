@@ -2,6 +2,7 @@ package application;
 
 import java.util.ArrayList;
 
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -13,25 +14,29 @@ public class ApplicationController {
 	Button calculate;
 	
 	@FXML
-	Label label1;
+	Label category;
 	
 	@FXML
-	Label label2;
+	Label product;
 	
 	@FXML
-	Label label3;
+	Label state;
 	
 	@FXML
 	Label label4;
 	
 	@FXML
-	ChoiceBox<String> box1;
+	ChoiceBox<String> categoryCB;
 	
 	@FXML
 	ChoiceBox<String> box2;
 	
 	@FXML
 	ChoiceBox<String> box3;
+	
+	private Main mainApp;
+	private ArrayList<Category> categoryList;
+	private ArrayList<State> satetList;
 	
 	void loadData() {
 		stateList.add(new ModelStanu("Alabama",4.0,13.5,0,0,0,0,0));
@@ -87,6 +92,34 @@ public class ApplicationController {
 		stateList.add(new ModelStanu("West Virginia",6.0,7.0,0,0,0,0,0));
 		stateList.add(new ModelStanu("Wisconsin",5.0,6.75,0,0,0,0,0));
 		stateList.add(new ModelStanu("Wyoming",4.0,6.0,0,0,0,0,0));
-
 	}
+	
+	@FXML
+    private void initialize() {
+    }
+	
+	
+	public void setMainApp(Main mainApp) {
+        this.mainApp = mainApp;
+    }
+	
+	public void setCategoryList(ArrayList<Category> category) {
+		this.categoryList = category;
+		setCategoryChoiceBox();
+	}
+	
+    public void setCategoryChoiceBox() {
+    	categoryCB.setItems(FXCollections.observableArrayList(
+    		    categoryList.get(0).getName(), categoryList.get(1).getName(),
+    		    categoryList.get(2).getName(), categoryList.get(3).getName(),
+    		    categoryList.get(4).getName(), categoryList.get(5).getName())
+    		);
+    }
+    
+	public void setStateList(ArrayList<State> state) {
+		this.stateList = state;
+	}
+    
+    
+	
 }
