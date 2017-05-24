@@ -14,7 +14,7 @@ public class Main extends Application {
 	
 	private Stage primaryStage;
 	
-	private ArrayList<Category> category = new ArrayList<Category>();
+	private ArrayList<Category> category;
 	private ArrayList<ModelStanu> state = new ArrayList<ModelStanu>();
 	private ArrayList<Product> product = new ArrayList<Product>();
 	
@@ -43,6 +43,7 @@ public class Main extends Application {
 	}	
 	
 	public void createCategory() {
+		category = new ArrayList<Category>();
 		category.add(new Category(1, "Groceries"));
 		category.add(new Category(2, "Prepared food"));
 		category.add(new Category(3, "Prescription drug"));
@@ -50,7 +51,14 @@ public class Main extends Application {
 		category.add(new Category(5, "Clothing"));
 	    category.add(new Category(6, "Intangibles"));
 	}
-	
+
+	public ArrayList<Category> getCategory() {
+		return category;
+	}
+
+	public void setCategory(ArrayList<Category> category) {
+		this.category = category;
+	}
 
 	public static void main(String[] args) {
 		launch(args);
