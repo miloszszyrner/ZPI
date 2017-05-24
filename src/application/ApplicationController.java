@@ -110,6 +110,7 @@ public class ApplicationController {
 		loadData();
 		setCategoryChoiceBox();
 		setProductChoiceBox();
+		setStateChoiceBox();
     }
 	
 	
@@ -131,6 +132,14 @@ public class ApplicationController {
     		op.add(productList.get(i).getName());
     	}
     	box2.setItems(op);
+    }
+    
+    public void setStateChoiceBox() {
+    	ObservableList<String> op = FXCollections.observableArrayList();
+    	for(int i = 0; i < stateList.size() - 1; i++) {
+    		op.add(stateList.get(i).getNazwa());
+    	}
+    	box3.setItems(op);
     }
     
 	public void setStateList(ArrayList<ModelStanu> state) {
