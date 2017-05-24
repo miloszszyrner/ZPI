@@ -15,20 +15,20 @@ public class Main extends Application {
 	private Stage primaryStage;
 	
 	private ArrayList<Category> category = new ArrayList<Category>();
-	private ArrayList<State> state = new ArrayList<State>();
+	private ArrayList<ModelStanu> state = new ArrayList<ModelStanu>();
+	private ArrayList<Product> product = new ArrayList<Product>();
 	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
 			createCategory();
-			createState();
 			this.primaryStage = primaryStage;
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("Makieta.fxml"));
 			Parent root = loader.load();			
 	        ApplicationController controller = loader.getController();
 			controller.setMainApp(this);
-			controller.setCategoryList(category);
+			controller.initialize(category, product);
 			controller.setStateList(state);
 			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);
@@ -51,22 +51,7 @@ public class Main extends Application {
 	    category.add(new Category(6, "Intangibles"));
 	}
 	
-	public void createState() {
-		state.add(new State(1, "Alabama"));
-		state.add(new State(2, "Alaska"));
-		state.add(new State(3, "Arizona"));
-		state.add(new State(4, "Arkansas"));
-		state.add(new State(5, "California"));
-		state.add(new State(6, "Colorado"));
-		state.add(new State(7, "Connecticut"));
-		state.add(new State(8, "Delaware"));
-		state.add(new State(9, "District of Columbia"));
-		state.add(new State(10, "Florida"));
-		state.add(new State(11, "Georgia"));
-		state.add(new State(12, "Guam"));
-	}
-	
-	
+
 	public static void main(String[] args) {
 		launch(args);
 	}

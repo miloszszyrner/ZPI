@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 
 public class ApplicationController {
 	ArrayList<ModelStanu> stateList = new ArrayList<ModelStanu>();
+	ArrayList<Product> productList = new ArrayList<Product>();
 	@FXML
 	Button calculate;
 	
@@ -36,7 +37,6 @@ public class ApplicationController {
 	
 	private Main mainApp;
 	private ArrayList<Category> categoryList;
-	private ArrayList<State> satetList;
 	
 	void loadData() {
 		stateList.add(new ModelStanu("Alabama",4.0,13.5,0,0,0,0,0));
@@ -92,21 +92,29 @@ public class ApplicationController {
 		stateList.add(new ModelStanu("West Virginia",6.0,7.0,0,0,0,0,0));
 		stateList.add(new ModelStanu("Wisconsin",5.0,6.75,0,0,0,0,0));
 		stateList.add(new ModelStanu("Wyoming",4.0,6.0,0,0,0,0,0));
+		
+		productList.add(new Product("Syf", 50.0f));
+		productList.add(new Product("Dziadostwo", 10.0f));
+		productList.add(new Product("Czarna zarowka", 170.0f));
+		productList.add(new Product("Burdel", 15.0f));
+		productList.add(new Product("Szatan", 666.0f));
+		productList.add(new Product("Janusz", 200.0f));
+		System.out.println(productList.size());
+		System.out.println(productList.get(5).getName());
 	}
 	
-	@FXML
-    private void initialize() {
+    public void initialize(ArrayList<Category> category, ArrayList<Product> product) {
+		this.categoryList = category;
+		this.productList = product;
+		loadData();
+		setCategoryChoiceBox();
+		setProductChoiceBox();
     }
 	
 	
 	public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
     }
-	
-	public void setCategoryList(ArrayList<Category> category) {
-		this.categoryList = category;
-		setCategoryChoiceBox();
-	}
 	
     public void setCategoryChoiceBox() {
     	categoryCB.setItems(FXCollections.observableArrayList(
@@ -116,7 +124,15 @@ public class ApplicationController {
     		);
     }
     
-	public void setStateList(ArrayList<State> state) {
+    public void setProductChoiceBox() {
+    	box2.setItems(FXCollections.observableArrayList(
+    		    productList.get(0).getName(), productList.get(1).getName(),
+    		    productList.get(2).getName(), productList.get(3).getName(),
+    		    productList.get(4).getName(), productList.get(5).getName())
+    		);
+    }
+    
+	public void setStateList(ArrayList<ModelStanu> state) {
 		this.stateList = state;
 	}
     
