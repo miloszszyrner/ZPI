@@ -2,6 +2,8 @@ package application;
 
 import java.util.ArrayList;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -94,14 +96,13 @@ public class ApplicationController {
 		stateList.add(new ModelStanu("Wisconsin",5.0,6.75,0,0,0,0,0));
 		stateList.add(new ModelStanu("Wyoming",4.0,6.0,0,0,0,0,0));
 		
-		productList.add(new Product("Syf", 50.0f));
-		productList.add(new Product("Dziadostwo", 10.0f));
-		productList.add(new Product("Czarna zarowka", 170.0f));
-		productList.add(new Product("Burdel", 15.0f));
-		productList.add(new Product("Szatan", 666.0f));
-		productList.add(new Product("Janusz", 200.0f));
-		System.out.println(productList.size());
-		System.out.println(productList.get(5).getName());
+		productList.add(new Product("Syf", 50.0f, categoryList.get(0).getName()));
+		productList.add(new Product("Dziadostwo", 50.0f, categoryList.get(0).getName()));
+		productList.add(new Product("Szatan", 50.0f, categoryList.get(1).getName()));
+		productList.add(new Product("Wtf", 50.0f, categoryList.get(1).getName()));
+		productList.add(new Product("Legia £KS", 50.0f, categoryList.get(1).getName()));
+		productList.add(new Product("Syf2", 50.0f, categoryList.get(1).getName()));
+		
 	}
 	
     public void initialize(ArrayList<Category> category, ArrayList<Product> product) {
@@ -111,6 +112,13 @@ public class ApplicationController {
 		setCategoryChoiceBox();
 		setProductChoiceBox();
 		setStateChoiceBox();
+		categoryCB.getSelectionModel().selectedIndexProperty()
+        .addListener(new ChangeListener<Number>() {
+          public void changed(ObservableValue ov, Number value, Number new_value) {
+        	  System.out.println("AAA");
+            setProductChoiceBox();
+          }
+        });
     }
 	
 	
@@ -129,7 +137,9 @@ public class ApplicationController {
     public void setProductChoiceBox() {
     	ObservableList<String> op = FXCollections.observableArrayList();
     	for(int i = 0; i < productList.size() - 1; i++) {
-    		op.add(productList.get(i).getName());
+    		if(productList.get(i).getCategory() == categoryCB.getValue()){
+    			op.add(productList.get(i).getName());
+    		}
     	}
     	box2.setItems(op);
     }
