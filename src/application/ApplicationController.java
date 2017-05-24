@@ -3,6 +3,7 @@ package application;
 import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -125,11 +126,11 @@ public class ApplicationController {
     }
     
     public void setProductChoiceBox() {
-    	box2.setItems(FXCollections.observableArrayList(
-    		    productList.get(0).getName(), productList.get(1).getName(),
-    		    productList.get(2).getName(), productList.get(3).getName(),
-    		    productList.get(4).getName(), productList.get(5).getName())
-    		);
+    	ObservableList<String> op = FXCollections.observableArrayList();
+    	for(int i = 0; i < productList.size() - 1; i++) {
+    		op.add(productList.get(i).getName());
+    	}
+    	box2.setItems(op);
     }
     
 	public void setStateList(ArrayList<ModelStanu> state) {
