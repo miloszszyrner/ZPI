@@ -28,8 +28,9 @@ public class Main extends Application {
 			Parent root = loader.load();			
 	        ApplicationController controller = loader.getController();
 			controller.setMainApp(this);
-			controller.initialize(category, product);
 			controller.setStateList(state);
+			controller.initialize(category, product,state);
+			
 			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);
 			primaryStage.show();
@@ -38,18 +39,17 @@ public class Main extends Application {
 		}
 	}
 	
-	public double CalculateAfterTax(double amount, Product p, ModelStanu s) {
+	/*public double CalculateAfterTax(double amount, Product p, ModelStanu s) {
 		return amount *(1 + s.calculateTax(p.getType()));
-	}	
+	}*/	
 	
 	public void createCategory() {
 		category = new ArrayList<Category>();
-		category.add(new Category(1, "Groceries"));
-		category.add(new Category(2, "Prepared food"));
-		category.add(new Category(3, "Prescription drug"));
-		category.add(new Category(4, "Non-prescription drug"));
-		category.add(new Category(5, "Clothing"));
-	    category.add(new Category(6, "Intangibles"));
+		category.add(new Category(0, "Groceries"));
+		category.add(new Category(1, "Prepared food"));
+		category.add(new Category(2, "Prescription drug"));
+		category.add(new Category(3, "Non-prescription drug"));
+		category.add(new Category(4, "Clothing"));
 	}
 
 	public ArrayList<Category> getCategory() {
