@@ -11,4 +11,4 @@ deploy:
   secret_access_key: "L9Ii4mE7id3n9W9ydm13qM6vAGMPF1mowCA9c6Fd"
   bucket: "S3 Bucket"
   skip_cleanup: true
-  local_dir: target/ZPI-0.0.1-SNAPSHOT.jar
+  local_dir: target
