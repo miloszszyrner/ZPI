@@ -1,31 +1,39 @@
 package application;
 
+
+import java.awt.List;
 import java.util.ArrayList;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 
 public class ApplicationController {
 	ArrayList<ModelStanu> stateList = new ArrayList<ModelStanu>();
+	ArrayList<Product> productList = new ArrayList<Product>();
 	@FXML
 	Button calculate;
 	
 	@FXML
-	Label label1;
+	Label category;
 	
 	@FXML
-	Label label2;
+	Label product;
 	
 	@FXML
-	Label label3;
+	Label state;
 	
 	@FXML
 	Label label4;
 	
 	@FXML
-	ChoiceBox<String> box1;
+	ChoiceBox<String> categoryCB;
 	
 	@FXML
 	ChoiceBox<String> box2;
@@ -33,12 +41,25 @@ public class ApplicationController {
 	@FXML
 	ChoiceBox<String> box3;
 	
+	@FXML
+	TextField cena;
+	
+	@FXML
+	TextField tax;
+	
+	@FXML
+	TextField priceWithTax;
+	
+	private Main mainApp;
+	private ArrayList<Category> categoryList;
+	
 	void loadData() {
-		stateList.add(new ModelStanu("Alabama",4.0,13.5,0,0,0,0,0));
-		stateList.add(new ModelStanu("Alaska",0.0,7.0,0,0,0,0,0));
-		stateList.add(new ModelStanu("Arizona",5.6,10.725,0,0,0,0,0));
-		stateList.add(new ModelStanu("Arkansas",6.5,11.625,1.5,0,0,0,0));
-		stateList.add(new ModelStanu("California",7.25,9.75,0,0,0,0,0));
+		stateList.add(new ModelStanu("Alabama",4.0,13.5,0,0,0,0,0,1,1,0,1,1));
+		stateList.add(new ModelStanu("Alaska",0.0,7.0,0,0,0,0,0,0,0,0,0,0));
+		stateList.add(new ModelStanu("Arizona",5.6,10.725,0,0,0,0,0,0,1,0,1,1));
+		stateList.add(new ModelStanu("Arkansas",6.5,11.625,1.5,0,0,0,0,1,1,0,1,1));
+		stateList.add(new ModelStanu("Massachusetts",6.25,6.25,0,7.0,0,0,175,0,1,0,1,0));
+		/*stateList.add(new ModelStanu("California",7.25,9.75,0,0,0,0,0));
 		stateList.add(new ModelStanu("Colorado",2.9,10.0,0,0,0,0,0));
 		stateList.add(new ModelStanu("Connecticut",6.35,6.35,0,0,0,0,0));
 		stateList.add(new ModelStanu("Delaware",0.0,0.0,0,0,0,0,0));
@@ -87,6 +108,192 @@ public class ApplicationController {
 		stateList.add(new ModelStanu("West Virginia",6.0,7.0,0,0,0,0,0));
 		stateList.add(new ModelStanu("Wisconsin",5.0,6.75,0,0,0,0,0));
 		stateList.add(new ModelStanu("Wyoming",4.0,6.0,0,0,0,0,0));
+		*/
+		productList.add(new Product("Syf", 100, categoryList.get(0).getName()));
+		productList.add(new Product("Dziadostwo", 150, categoryList.get(0).getName()));
+		productList.add(new Product("Szatan", 200, categoryList.get(1).getName()));
+		productList.add(new Product("Wtf", 340, categoryList.get(1).getName()));
+		productList.add(new Product("Legia £KS", 700, categoryList.get(1).getName()));
+		productList.add(new Product("Syf2", 160, categoryList.get(1).getName()));
+		productList.add(new Product("ProductKat4", 180, categoryList.get(4).getName()));
+		productList.add(new Product("ProductKat4(2)", 140, categoryList.get(4).getName()));
 
 	}
+	
+    public void initialize(ArrayList<Category> category, ArrayList<Product> product, ArrayList<ModelStanu> stateL) {
+		this.categoryList = category;
+		this.productList = product;
+		this.stateList=stateL;
+		loadData();
+		
+		setCategoryChoiceBox();
+		//setStateChoiceBox();
+		categoryCB.getSelectionModel().selectedIndexProperty()
+        .addListener(new ChangeListener<Number>() {
+          public void changed(ObservableValue ov, Number value, Number new_value) {
+        	
+        	  setProductChoiceBox(new_value);
+          }
+        });
+		box2.getSelectionModel().selectedIndexProperty()
+        .addListener(new ChangeListener<Number>() {
+          public void changed(ObservableValue ov, Number value, Number new_value) {
+        	  try{
+        		  ObservableList<String> op = FXCollections.observableArrayList();
+	        	  op=box2.getItems();
+	        	  box2.setValue(op.get((int)new_value));  
+      	  		  System.out.println(box2.getValue());
+	        	  setStateChoiceBox();
+	        	  for(int i=0;i<productList.size();i++){
+	        		 if(productList.get(i).getName().equals(box2.getValue())){
+	        		
+	        			cena.setText(Double.toString(productList.get(i).getPrice())); 
+	        			System.out.println("price-"+productList.get(i).getPrice());
+	        		 }
+	        		 
+	        	  }
+	        	 
+        	}catch(NullPointerException e) {
+        		//System.out.println("nie wybrany product");
+        	}catch(ArrayIndexOutOfBoundsException e){
+        		//System.out.println("nie wybrany product");
+        	}
+          }
+        });
+		
+		box3.getSelectionModel().selectedIndexProperty()
+        .addListener(new ChangeListener<Number>() {
+          public void changed(ObservableValue ov, Number value, Number new_value) {
+        	  try{
+        	  		box3.setValue(stateList.get((int)new_value).getNazwa());  
+        	  		System.out.println(box3.getValue());
+        	  		
+        	  		for(int i=0;i<categoryList.size();i++){
+		        	 	if(categoryList.get(i).getName().equals(categoryCB.getValue())){
+		        	 		double[][] table=stateList.get((int) new_value).getProductTypeTax();
+		        	 		double taxa=0;
+		        	 		if(table[categoryList.get(i).getId()][1]==1&&table[categoryList.get(i).getId()][0]==0){
+		        	 			 taxa=stateList.get((int)new_value).getBase_sales_tax();
+		        	 			//System.out.println(tax);
+		        	 		}else if(table[categoryList.get(i).getId()][1]==1&&table[categoryList.get(i).getId()][0]!=0){
+		        	 			 taxa=table[categoryList.get(i).getId()][0];
+		        	 			//System.out.println(tax);
+							}else{
+								if(categoryList.get(i).getId()==4){
+									switch(stateList.get((int) new_value).getNazwa()){
+										case "Massachusetts":
+											for(int j=0;j<productList.size();j++){
+									
+												if(productList.get(j).getName().equals(box2.getValue())&&productList.get(j).getPrice()>175 ){
+													 taxa=stateList.get((int)new_value).getBase_sales_tax();
+													
+													// System.out.println(tax);
+													 break;
+												}else{
+													 taxa=0;
+													// System.out.println(tax);
+												}
+											}
+											
+											break;
+										case "New York":
+											for(int j=0;j<productList.size();j++){
+												
+												if(productList.get(j).getName().equals(box2.getValue())&&productList.get(j).getPrice()>110 ){
+													 taxa=stateList.get((int)new_value).getBase_sales_tax();
+													
+													// System.out.println(tax);
+													 break;
+												}else{
+													 taxa=0;
+													// System.out.println(tax);
+												}
+											}
+											
+											break;
+										case "Vermont":
+											for(int j=0;j<productList.size();j++){
+												
+												if(productList.get(j).getName().equals(box2.getValue())&&productList.get(j).getPrice()>110 ){
+													 taxa=stateList.get((int)new_value).getBase_sales_tax();
+													
+													// System.out.println(tax);
+													 break;
+												}else{
+													 taxa=0;
+													// System.out.println(tax);
+												}
+											}
+											
+											break;
+										
+									}
+								}else{
+								    taxa=0;
+									//System.out.println(tax);
+								}
+								
+								
+							}
+		        	 		System.out.println(taxa);
+							tax.setText(Double.toString(taxa));;	
+							}
+	        	  			
+		        	 	}
+          
+        	  }catch(NullPointerException e) {
+          		//System.out.println("nie wybrany stan");
+          	}catch(ArrayIndexOutOfBoundsException e){
+          		//System.out.println("nie wybrany stan");
+          	}
+          }
+        });
+    }
+	
+	
+	public void setMainApp(Main mainApp) {
+        this.mainApp = mainApp;
+    }
+	
+    public void setCategoryChoiceBox() {
+    	categoryCB.setItems(FXCollections.observableArrayList(
+    		    categoryList.get(0).getName(), categoryList.get(1).getName(),
+    		    categoryList.get(2).getName(), categoryList.get(3).getName(),
+    		    categoryList.get(4).getName())
+    		);
+    }
+    
+    public void setProductChoiceBox(Number value ) {
+    	ObservableList<String> op = FXCollections.observableArrayList();
+    	ArrayList<Product> productListInCategory = new ArrayList<Product>();
+    	for(int i = 0; i < productList.size(); i++) {
+    		if(productList.get(i).getCategory().equals(categoryList.get((int) value).getName())){
+    			op.add(productList.get(i).getName());
+    			productListInCategory.add(productList.get(i));
+    		}
+    	}
+    	box2.setItems(op);
+    }
+    
+    public void setStateChoiceBox() {
+    	ObservableList<String> op = FXCollections.observableArrayList();
+    	 
+    	for(int i = 0; i < stateList.size(); i++) {
+    		op.add(stateList.get(i).getNazwa());
+    	}
+    	box3.setItems(op);
+    }
+    
+	public void setStateList(ArrayList<ModelStanu> state) {
+		this.stateList = state;
+	}
+    @FXML
+    public void calculate(){
+    	double price=Double.parseDouble(cena.getText());
+    	double taxa=Double.parseDouble(tax.getText());
+    	double PodDlaCeny=price*taxa/100;
+    	priceWithTax.setText(Double.toString(price+PodDlaCeny));
+    }
+    
+	
 }
