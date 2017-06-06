@@ -9,6 +9,7 @@ deploy:
   provider: s3
   access_key_id: "AKIAI6JL7FZYGGS4MUCQ"
   secret_access_key: "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"
-  bucket: "S3 Bucket"
+  bucket: "zpi-release"
   skip_cleanup: true
+  upload-dir: travis-builds
   local_dir: target
