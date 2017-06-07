@@ -4,6 +4,8 @@ package application;
 import java.awt.List;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -57,7 +59,7 @@ public class ApplicationController {
 	private ArrayList<Category> categoryList;
 	
 	void loadData() {
-		cena.setEditable(false);
+		//cena.setEditable(false);
 		tax.setEditable(false);
 		priceWithTax.setEditable(false);
 		taxAmount.setEditable(false);
@@ -159,7 +161,7 @@ public class ApplicationController {
 	        	  for(int i=0;i<productList.size();i++){
 	        		 if(productList.get(i).getName().equals(box2.getValue())){
 	        		
-	        			cena.setText(Double.toString(productList.get(i).getPrice())+"$"); 
+	        			cena.setText(Double.toString(productList.get(i).getPrice())); 
 	        			System.out.println("price-"+productList.get(i).getPrice());
 	        		 }
 	        		 
@@ -301,11 +303,16 @@ public class ApplicationController {
 	}
     @FXML
     public void calculate(){
-    	double price=Double.parseDouble(cena.getText().substring(0,cena.getText().length() -1));
-    	double taxa=Double.parseDouble(tax.getText().substring(0, tax.getText().length() -1));
-    	double PodDlaCeny=price*taxa/100;
-    	taxAmount.setText(Double.toString(PodDlaCeny)+"$");
-    	priceWithTax.setText(Double.toString(price+PodDlaCeny)+"$");
+    	try{
+    		
+	    	double price=Double.parseDouble(cena.getText());
+	    	double taxa=Double.parseDouble(tax.getText().substring(0, tax.getText().length() -1));
+	    	double PodDlaCeny=price*taxa/100;
+	    	taxAmount.setText(Double.toString(PodDlaCeny)+"$");
+	    	priceWithTax.setText(Double.toString(price+PodDlaCeny)+"$");
+    	}catch(NumberFormatException e){
+    		JOptionPane.showMessageDialog(null,  "¯le podana cena " );
+    	}
     }
     
 	
