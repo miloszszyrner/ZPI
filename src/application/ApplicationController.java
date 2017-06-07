@@ -50,6 +50,9 @@ public class ApplicationController {
 	@FXML
 	TextField priceWithTax;
 	
+	@FXML
+	TextField taxAmount;
+	
 	private Main mainApp;
 	private ArrayList<Category> categoryList;
 	
@@ -147,7 +150,7 @@ public class ApplicationController {
 	        	  for(int i=0;i<productList.size();i++){
 	        		 if(productList.get(i).getName().equals(box2.getValue())){
 	        		
-	        			cena.setText(Double.toString(productList.get(i).getPrice())); 
+	        			cena.setText(Double.toString(productList.get(i).getPrice())+"$"); 
 	        			System.out.println("price-"+productList.get(i).getPrice());
 	        		 }
 	        		 
@@ -236,7 +239,7 @@ public class ApplicationController {
 								
 							}
 		        	 		System.out.println(taxa);
-							tax.setText(Double.toString(taxa));;	
+							tax.setText(Double.toString(taxa)+"%");;	
 							}
 	        	  			
 		        	 	}
@@ -289,10 +292,11 @@ public class ApplicationController {
 	}
     @FXML
     public void calculate(){
-    	double price=Double.parseDouble(cena.getText());
-    	double taxa=Double.parseDouble(tax.getText());
+    	double price=Double.parseDouble(cena.getText().substring(0,cena.getText().length() -1));
+    	double taxa=Double.parseDouble(tax.getText().substring(0, tax.getText().length() -1));
     	double PodDlaCeny=price*taxa/100;
-    	priceWithTax.setText(Double.toString(price+PodDlaCeny));
+    	taxAmount.setText(Double.toString(PodDlaCeny)+"$");
+    	priceWithTax.setText(Double.toString(price+PodDlaCeny)+"$");
     }
     
 	
