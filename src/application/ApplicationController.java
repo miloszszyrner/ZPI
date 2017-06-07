@@ -57,6 +57,10 @@ public class ApplicationController {
 	private ArrayList<Category> categoryList;
 	
 	void loadData() {
+		cena.setEditable(false);
+		tax.setEditable(false);
+		priceWithTax.setEditable(false);
+		taxAmount.setEditable(false);
 		stateList.add(new ModelStanu("Alabama",4.0,13.5,0,0,0,0,0,1,1,0,1,1));
 		stateList.add(new ModelStanu("Alaska",0.0,7.0,0,0,0,0,0,0,0,0,0,0));
 		stateList.add(new ModelStanu("Arizona",5.6,10.725,0,0,0,0,0,0,1,0,1,1));
